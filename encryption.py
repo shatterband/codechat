@@ -10,17 +10,19 @@ def text_from_bits(bits, encoding='utf-8', errors='surrogatepass'):
 def bits_to_codebits(bits):
     codebits = ''
     key = open('keycode.rbmk', 'r')
+    # TODO change read to ODE
     keycode = key.read()
     for x in range(len(bits)):
         if keycode[x] == '1':
             codebits = codebits + str(int(not(int(bits[x]))))
         elif keycode[x] == '0':
             codebits = codebits + bits[x]
+    key.close()
     return codebits
 
 def createkey(x = ''):
     import random
-
+    # TODO change createcey to one dimention automate encription
     file = open(x + 'keycode.rbmk', 'w')
     i = 4096
     writeb = ''
