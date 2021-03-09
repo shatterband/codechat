@@ -16,6 +16,8 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 while 1:
+    
+        # TODO add one dimention automate encription
         message = input(' :>>')
         if message == '//exit':
             break
@@ -23,3 +25,4 @@ while 1:
         message = bits_to_codebits(message)
         message = bytes(message, encoding='ASCII')
         sock.sendto(message,('255.255.255.255',port))
+    
