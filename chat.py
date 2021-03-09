@@ -9,6 +9,7 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 s.bind(('0.0.0.0',port))
 while 1:
+	# TODO one dimention automate encryption
 	message = s.recv(512)
 	message = message.decode('ASCII')
 	message = bits_to_codebits(message)
