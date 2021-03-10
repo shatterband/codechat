@@ -2,7 +2,6 @@ import socket
 from encryption import text_to_bits, text_from_bits, bits_to_codebits, createkey, readkey, chngstr
 
 print('###HELLO###')
-print('Welcome to codechat. That program send messanges to all ip on one port. If you wanna begin write "start", if you wanna generate new keycode write "generate"')
 wish = input('##:')
 if wish == 'generate':
     createkey()
@@ -28,5 +27,4 @@ while 1:
         message = bytes(message, encoding='ASCII')
         sock.sendto(message,('255.255.255.255',port))
         keycode = chngstr(keycode, rule)
-        print('resived')
     

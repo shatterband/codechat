@@ -2,7 +2,6 @@ import socket
 from encryption import text_to_bits, text_from_bits, bits_to_codebits, createkey, readkey, chngstr
 
 print('###HELLO###')
-print('Welcome to chatreader. That program read one port all time and write messages. Please enter port')
 port = int(input('enter port :>>'))
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -15,7 +14,6 @@ rule = ord(text_from_bits(x[1]))
 
 while 1:
     message = s.recv(512)
-    print('geted')
     message = message.decode('ASCII')
     message = bits_to_codebits(message, keycode, rule)
     message = text_from_bits(message)
