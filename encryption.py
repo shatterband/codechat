@@ -7,25 +7,27 @@ def text_from_bits(bits, encoding='utf-8', errors='surrogatepass'):
     n = int(bits, 2)
     return n.to_bytes((n.bit_length() + 7) // 8, 'big').decode(encoding, errors) or '\0'
 
-def bits_to_codebits(bits):
+def bits_to_codebits(bits, keycode, rule):
     codebits = ''
     key = open('keycode.rbmk', 'r')
     # TODO change read to ODE
     keycode = key.read()
+    key.close()
     for x in range(len(bits)):
         if keycode[x] == '1':
             codebits = codebits + str(int(not(int(bits[x]))))
         elif keycode[x] == '0':
             codebits = codebits + bits[x]
-    key.close()
+
     return codebits
 
-def createkey(x = ''):
+def createkey(x = '', rule = 30):
     import random
     # TODO change createcey to one dimention automate encription
     file = open(x + 'keycode.rbmk', 'w')
     i = 4096
-    writeb = ''
+    rule = text_to_bits(chr(rule))
+    writeb = rule
     while i:
         writeb += str(random.randint(0, 1))
         i = i - 1
@@ -59,6 +61,11 @@ def chngstr(stg, rule):
         elif string[x] == '0' and string[x+1] == '0' and string[x+2] == '0':
              _string += rule[7]
     return _string
-
-
+def readkey():
+    key = open('keycode.rbmk', 'r')
+    keynrule = key.read()
+    key.close()
+    keycode = keynrule[8:]
+    rule = keynrule[:8]
+    return [keycode, rule]
 
